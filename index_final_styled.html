@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reset Cleaners LLC</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: #f4f6f8;
+      color: #333;
+    }
+    header {
+      background: #4caf50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    header img {
+      max-width: 150px;
+      margin-top: 10px;
+    }
+    nav {
+      background: #333;
+      display: flex;
+      justify-content: center;
+      padding: 0.5rem;
+    }
+    nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 2rem 1rem;
+    }
+    section {
+      background: white;
+      padding: 1.5rem;
+      margin: 1rem auto;
+      max-width: 800px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    h2 {
+      color: #2e7d32;
+    }
+    .cta {
+      background: #e3f2fd;
+      padding: 1rem;
+      text-align: center;
+      margin: 2rem 0;
+      border-left: 5px solid #2196f3;
+    }
+    form {
+      background: #fff;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      max-width: 400px;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #388e3c;
+    }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="reset_cleaners_logo.png" alt="Reset Cleaners Logo" />
+    <h1>Reset Cleaners LLC</h1>
+    <p>Reset your space, reclaim your time</p>
+  </header>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <main>
+    <section id="home">
+      <h2>Welcome to Reset Cleaners</h2>
+      <p>Your trusted cleaning service in Wenatchee, WA. We offer reliable, professional cleaning for homes, Airbnb properties, and move-outs. First-time customers enjoy 20% off!</p>
+    </section>
+    <div class="cta">
+      <strong>📞 Call or Text Us Today: <a href="tel:5094159163">509-415-9163</a></strong>
+    </div>
+    <section id="services">
+      <h2>Our Services</h2>
+      <ul>
+        <li>Residential Cleaning</li>
+        <li>Move-in / Move-out Cleaning</li>
+        <li>Airbnb Turnover Service</li>
+        <li>Deep Cleaning</li>
+        <li>Office / Commercial Cleaning</li>
+      </ul>
+    </section>
+    <section id="pricing">
+      <h2>Pricing</h2>
+      <p>Flat rates and hourly pricing available. Contact us for a custom quote.</p>
+      <ul>
+        <li>Basic Clean (2BR/1BA): $100–$150 or $35/hr</li>
+        <li>Deep Clean: $180–$250 or $45/hr</li>
+        <li>Move-in/out: $200–$300 or $45/hr</li>
+        <li>Airbnb Turnover: $80–$150 flat rate</li>
+      </ul>
+    </section>
+    <section id="about">
+      <h2>About Us</h2>
+      <p>We’re a local, family-run cleaning business based in Wenatchee. We care about quality, consistency, and treating your home with respect. Fully insured and built on community trust.</p>
+    </section>
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>Email: <a href="mailto:resetcleanersllc@gmail.com">resetcleanersllc@gmail.com</a></p>
+      <p>Phone: <a href="tel:5094159163">509-415-9163</a></p>
+    </section>
+    <section id="booking">
+      <h2>Request a Quote or Booking</h2>
+      <form action="https://formsubmit.co/resetcleanersllc@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone">
+
+        <label for="service">Service Type:</label>
+        <select id="service" name="service">
+          <option value="residential">Residential Cleaning</option>
+          <option value="deep">Deep Clean</option>
+          <option value="move">Move-in/Move-out</option>
+          <option value="airbnb">Airbnb Turnover</option>
+          <option value="office">Office / Commercial</option>
+        </select>
+
+        <label for="date">Preferred Date:</label>
+        <input type="date" id="date" name="date">
+
+        <label for="message">Additional Notes:</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+
+        <button type="submit">Send Request</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Reset Cleaners LLC. All rights reserved.</p>
+  </footer>
+</body>
+</html>
