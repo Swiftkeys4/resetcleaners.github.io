@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reset Cleaners LLC</title>
+  <link rel="icon" href="reset_cleaners_logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css?family=Segoe+UI:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f4f6fa;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(135deg, #2c3e50 0%, #2451b7 100%);
+      color: white;
+      padding: 2.2em 1em 1.5em 1em;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 260px;
+    }
+    header img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 0 24px #a2c6ff;
+      border: 5px solid #fff;
+      background: #f4f6fa;
+      margin-top: 1em;
+      z-index: 2;
+      position: relative;
+    }
+    header h1 {
+      font-size: 2.4rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.15em;
+      margin-top: 0.35em;
+    }
+    .tagline {
+      font-size: 1.15rem;
+      color: #dbeafe;
+      margin-bottom: 0.5em;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    .bubble, .twinkle {
+      position: absolute;
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.32;
+    }
+    .bubble {
+      background: radial-gradient(ellipse at 40% 60%, #a6c8ff 0%, #477ff8 100%);
+      box-shadow: 0 0 32px #b7e0ff70;
+      animation: floatBubble 18s infinite linear;
+      filter: blur(0.5px);
+    }
+    .twinkle {
+      width: 8px; height: 8px;
+      background: radial-gradient(white 65%, transparent 100%);
+      opacity: 0.62;
+      animation: twinkleAnim 2.5s infinite alternate;
+    }
+    @keyframes floatBubble {
+      0% { transform: translateY(110px) scale(0.7);}
+      100% { transform: translateY(-520px) scale(1.06);}
+    }
+    @keyframes twinkleAnim {
+      0% { opacity: 0.48; }
+      100% { opacity: 0.97; }
+    }
+    nav {
+      background: #2451b7;
+      color: white;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2em;
+      padding: 0.8em 0 0.7em 0;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 3px 10px #0002;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.2s;
+      padding: 0.35em 0.8em;
+      border-radius: 9px;
+      font-size: 1.09em;
+    }
+    nav a:hover, nav a.active {
+      background: #415b98;
+      color: #fff;
+    }
+    .sticky-cta {
+      position: fixed;
+      bottom: 18px;
+      right: 18px;
+      z-index: 99;
+      background: linear-gradient(90deg, #2451b7 60%, #1e90ff 100%);
+      color: #fff;
+      border: none;
+      padding: 1em 2em;
+      border-radius: 35px;
+      box-shadow: 0 6px 20px #2451b7a0;
+      font-size: 1.08em;
+      font-weight: 700;
+      cursor: pointer;
+      animation: fadeInUp 1.6s;
+      transition: background 0.23s;
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(60px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    .welcome-banner {
+      background: #eef5ff;
+      color: #2451b7;
+      text-align: center;
+      padding: 0.7em;
+      font-weight: 600;
+      letter-spacing: 1px;
+      display: none;
+      transition: all 0.5s;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.2em 1.2em 1em 1.2em;
+    }
+    section {
+      background: white;
+      margin: 1.7em 0;
+      padding: 2.3em 1.6em;
+      border-radius: 1.7em;
+      box-shadow: 0 2px 16px #0b3c7230;
+      position: relative;
+    }
+    h2 {
+      color: #2451b7;
+      font-size: 2.1em;
+      margin-bottom: 0.55em;
+      font-weight: 700;
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      nav {gap:0.7em; font-size: 0.97em;}
+      section { padding: 1.6em 0.7em;}
+      .container {padding: 1.2em 0.2em;}
+      header {padding: 1.5em 0.5em 1em 0.5em;}
+    }
+    /* ...other styles omitted for brevity... */
+    /* Insert additional styles as needed for FAQ, testimonials, forms, etc. */
+  </style>
+</head>
+<body>
+  <header id="header">
+    <img src="reset_cleaners_logo.png" alt="Reset Cleaners Logo" />
+    <h1>Reset Cleaners LLC</h1>
+    <div class="tagline">Reset your space, reclaim your life</div>
+    <!-- JS: Bubbles/twinkles auto-injected -->
+  </header>
+  <div class="welcome-banner" id="welcome-banner">Welcome back! Ready to schedule your next clean?</div>
+  <nav>
+    <a href="#quote">Quote</a>
+    <a href="#why">Why</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button class="sticky-cta" onclick="document.getElementById('quote').scrollIntoView({behavior:'smooth'})">Book Now</button>
+  <div class="container">
+
+    <!-- Quote Calculator (advanced, animated, calming) -->
+    <section id="quote">
+      <h2>Get Your Instant Quote</h2>
+      <div style="display:flex;justify-content:center;align-items:center;">
+        <div id="calc-card" style="background:rgba(255,255,255,0.22);border-radius:1.5em;box-shadow:0 8px 32px 0 rgba(31,38,135,0.14);padding:2.2em 2em 1.5em 2em;max-width:420px;width:100%;display:flex;flex-direction:column;align-items:center;position:relative;">
+          <div style="width:100%;margin-bottom:1em;">
+            <label>Bedrooms:</label>
+            <div>
+              <button class="q-btn" onclick="setBeds(1)">1</button>
+              <button class="q-btn" onclick="setBeds(2)">2</button>
+              <button class="q-btn" onclick="setBeds(3)">3</button>
+              <button class="q-btn" onclick="setBeds(4)">4+</button>
+            </div>
+          </div>
+          <div style="width:100%;margin-bottom:1em;">
+            <label>Bathrooms:</label>
+            <div>
+              <button class="q-btn" onclick="setBaths(1)">1</button>
+              <button class="q-btn" onclick="setBaths(2)">2</button>
+              <button class="q-btn" onclick="setBaths(3)">3</button>
+              <button class="q-btn" onclick="setBaths(4)">4+</button>
+            </div>
+          </div>
+          <div style="width:100%;margin-bottom:1em;">
+            <label>Add-ons:</label>
+            <div>
+              <label><input type="checkbox" id="oven" onchange="calcQuote()"> Oven</label>
+              <label><input type="checkbox" id="fridge" onchange="calcQuote()"> Fridge</label>
+              <label><input type="checkbox" id="hottub" onchange="calcQuote()"> Hot Tub</label>
+            </div>
+          </div>
+          <div class="summary" style="margin:1em 0 0.5em 0;font-size:1.1em;color:#2e68b3;" id="summary"></div>
+          <div id="price" style="font-size:1.7em;font-weight:700;color:#174ea6;background:rgba(30,58,138,0.08);padding:0.4em 1em;border-radius:0.7em;transition:background 0.5s;">$100 - $120</div>
+          <div style="font-size:0.95em;color:#2451b7;opacity:0.7;margin-top:0.7em;">This is your estimated price. We'll confirm all details after you book.</div>
+          <button onclick="showTwinkle()" style="margin-top:1.4em;background:linear-gradient(90deg,#2451b7 0%,#7ea7ff 100%);color:white;padding:0.9em 2em;font-size:1.1em;border:none;border-radius:2em;box-shadow:0 3px 12px rgba(31,38,135,0.12);font-weight:600;transition:background 0.3s;cursor:pointer;">Book Now</button>
+          <!-- Twinkle animation overlay -->
+          <div id="twinkle" style="display:none;position:absolute;top:45%;left:50%;transform:translate(-50%,-50%);pointer-events:none;">
+            <svg width="120" height="120">
+              <g>
+                <circle cx="60" cy="60" r="25" fill="none" stroke="#4fc3f7" stroke-width="4" opacity="0.5"/>
+                <g>
+                  <line x1="60" y1="15" x2="60" y2="105" stroke="#b9e0ff" stroke-width="5" />
+                  <line x1="15" y1="60" x2="105" y2="60" stroke="#b9e0ff" stroke-width="5" />
+                  <line x1="28" y1="28" x2="92" y2="92" stroke="#d2f5ff" stroke-width="3" />
+                  <line x1="92" y1="28" x2="28" y2="92" stroke="#d2f5ff" stroke-width="3" />
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY SECTION, SERVICES, PRICING, FAQ, TESTIMONIALS, CONTACT, CALENDLY -->
+    <!-- ...Insert your Why (expandable), Services (with details), Pricing, FAQ, Testimonials, Contact, and booking sections here... -->
+
+  </div>
+  <script>
+    // BUBBLES/TWINKLES HEADER ANIMATION
+    (function(){
+      const header = document.getElementById('header');
+      // Create bubbles
+      for(let i=0; i<14; i++) {
+        let b = document.createElement('div');
+        b.className = 'bubble';
+        b.style.width = b.style.height = (32+Math.random()*76) + 'px';
+        b.style.left = (2+Math.random()*90) + '%';
+        b.style.bottom = (-60+Math.random()*80) + 'px';
+        b.style.animationDuration = (14+Math.random()*7) + 's';
+        header.appendChild(b);
+      }
+      // Create twinkles
+      for(let i=0;i<20;i++){
+        let t = document.createElement('div');
+        t.className='twinkle';
+        t.style.left=(5+Math.random()*90)+'%';
+        t.style.top=(5+Math.random()*80)+'px';
+        t.style.animationDuration=(1.5+Math.random()*1.2)+'s';
+        header.appendChild(t);
+      }
+    })();
+
+    // Welcome banner for repeat visitors
+    (function(){
+      if(window.localStorage.getItem('visited')){
+        document.getElementById('welcome-banner').style.display='block';
+      } else {
+        window.localStorage.setItem('visited','yes');
+      }
+    })();
+
+    // QUOTE CALCULATOR JS
+    let beds = 1, baths = 1;
+    function setBeds(val) {
+      beds = val;
+      document.querySelectorAll('.q-btn').forEach((btn,i) => {if(i<4)btn.classList.toggle('selected',i===val-1);});
+      calcQuote();
+    }
+    function setBaths(val) {
+      baths = val;
+      document.querySelectorAll('.q-btn').forEach((btn,i) => {if(i>=4&&i<=7)btn.classList.toggle('selected',i-3===val);});
+      calcQuote();
+    }
+    function calcQuote() {
+      let oven = document.getElementById('oven').checked ? 25 : 0;
+      let fridge = document.getElementById('fridge').checked ? 20 : 0;
+      let hottub = document.getElementById('hottub').checked ? 25 : 0;
+      let low = 100 + ((beds-1)*30) + ((baths-1)*20) + oven + fridge + hottub;
+      let high = 100 + ((beds-1)*50) + ((baths-1)*30) + oven + fridge + hottub;
+      document.getElementById('price').textContent = `$${low} - $${high}`;
+      document.getElementById('summary').textContent = `${beds} bed${beds>1?'s':''}, ${baths} bath${baths>1?'s':''}` +
+        (oven ? ", Oven" : "") + (fridge ? ", Fridge" : "") + (hottub ? ", Hot Tub" : "");
+    }
+    function showTwinkle() {
+      let t = document.getElementById('twinkle');
+      t.style.display = "block";
+      setTimeout(()=>{ t.style.display = "none"; }, 1300);
+    }
+    setBeds(1); setBaths(1); calcQuote();
+  </script>
+</body>
+</html>
