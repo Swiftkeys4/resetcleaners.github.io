@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reset Cleaners LLC - Instant Quote</title>
+  <link href="https://fonts.googleapis.com/css?family=Segoe+UI:400,700&display=swap" rel="stylesheet">
+  <style>
+    body { margin:0; font-family:'Segoe UI',sans-serif; background:#f4f6fa; color:#2c3e50;}
+    header {
+      background: linear-gradient(135deg, #2c3e50 0%, #2451b7 100%);
+      color: #fff;
+      text-align: center;
+      padding: 2.1em 1em 1em 1em;
+      position: relative;
+      overflow: hidden;
+      min-height: 220px;
+    }
+    header img {
+      width: 108px; height: 108px; border-radius: 50%;
+      background: #fff; border: 4px solid #e4edfa; box-shadow: 0 0 24px #7ea7ff55; margin-top:1em;
+    }
+    header h1 { font-size:2.2em; margin:0.4em 0 0.13em 0; }
+    .tagline { font-size:1.15em; color:#dbeafe; font-weight:500; letter-spacing:1px;}
+    nav {background:#2451b7;color:#fff;display:flex;justify-content:center;gap:2em;padding:0.75em 0 0.7em 0; font-weight:600;position:sticky;top:0;z-index:10;}
+    nav a {color:#fff;text-decoration:none;transition:color 0.22s;padding:0.32em 0.7em;border-radius:9px;}
+    nav a:hover {background:#415b98;}
+    .container {max-width:1200px;margin:0 auto;padding:1.5em 1.1em 2em 1.1em;}
+    @media (max-width: 700px) {nav{gap:0.7em;font-size:0.98em;} .container{padding:0.7em 0.2em;} header{padding:1.4em 0.2em 1em 0.2em;}}
+    /* --- Calculator Styles (from your premium design) --- */
+    #quote {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 70vh;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        margin-top: 0;
+    }
+    #calc-card {
+        background: rgba(255, 255, 255, 0.23);
+        backdrop-filter: blur(14px);
+        border-radius: 2.5em;
+        padding: 3em;
+        max-width: 480px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+        box-shadow:
+            0 15px 35px rgba(31, 38, 135, 0.2),
+            0 0 0 1px rgba(255, 255, 255, 0.6),
+            0 0 20px rgba(125, 167, 255, 0.4),
+            0 0 40px rgba(125, 167, 255, 0.2);
+        transform: translateY(0);
+        animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0px); }
+    }
+    h2 {
+        font-size: 2.4em;
+        color: #2451b7;
+        margin-bottom: 1.5em;
+        text-align: center;
+        font-weight: 800;
+        text-shadow: 0 3px 8px rgba(228, 237, 250, 0.4);
+        position: relative;
+        letter-spacing: -0.02em;
+    }
+    .section {
+        width: 100%;
+        margin-bottom: 2.3em;
+    }
+    .section-label {
+        font-size: 1.15em;
+        font-weight: 600;
+        color: #1f2f5a;
+        display: block;
+        margin-bottom: 1em;
+        position: relative;
+        padding-left: 1.5em;
+    }
+    .btn-row {
+        display: flex;
+        gap: 1.5em;
+        justify-content: center;
+        margin-top: 0.6em;
+    }
+    .glass-btn {
+        background: rgba(255, 255, 255, 0.65);
+        border: 1px solid rgba(36, 81, 183, 0.15);
+        border-radius: 1.8em;
+        box-shadow: 0 5px 20px rgba(192, 216, 250, 0.4);
+        padding: 1em 2.3em;
+        font-size: 1.19em;
+        color: #2451b7;
+        font-weight: 700;
+        transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+        cursor: pointer;
+        outline: none;
+        min-width: 110px;
+        position: relative;
+        overflow: hidden;
+        transform: scale(1);
+    }
+    .glass-btn:focus, .glass-btn.selected {
+        background: #2451b7;
+        color: #fff;
+        box-shadow: 0 15px 30px rgba(23, 78, 166, 0.4);
+        transform: scale(1.05);
+    }
+    .addon-row {
+        display: flex;
+        gap: 1.5em;
+        margin-top: 0.7em;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .addon-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.55);
+        border-radius: 1.5em;
+        padding: 1.5em 1.8em 1.2em 1.8em;
+        box-shadow: 0 8px 28px rgba(179, 197, 223, 0.2);
+        font-weight: 600;
+        transition: all 0.4s ease;
+        min-width: 110px;
+        position: relative;
+        overflow: hidden;
+    }
+    .addon-card label {
+        color: #2451b7;
+        font-size: 1.08em;
+        margin-top: 0.4em;
+        font-weight: 600;
+        text-align: center;
+        z-index: 2;
+    }
+    .addon-card input[type="checkbox"] {
+        appearance: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: white;
+        box-shadow: 0 0 0 2px #7ea7ff;
+        position: relative;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        z-index: 2;
+    }
+    .addon-card input[type="checkbox"]:checked {
+        background: #2451b7;
+        box-shadow: 0 0 0 2px #2451b7, 0 0 15px rgba(36, 81, 183, 0.5);
+    }
+    .addon-card input[type="checkbox"]:checked::after {
+        content: '✓';
+        position: absolute;
+        color: white;
+        font-size: 1.2em;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .summary {
+        margin: 1.3em 0 0.8em;
+        font-size: 1.25em;
+        color: #1f2f5a;
+        text-align: center;
+        line-height: 1.6;
+        background: rgba(255, 255, 255, 0.6);
+        padding: 1.2em;
+        border-radius: 1.2em;
+        width: 100%;
+        box-shadow: 0 4px 12px rgba(36, 81, 183, 0.1);
+    }
+    #price {
+        font-size: 2.4em;
+        font-weight: 800;
+        color: #174ea6;
+        background: rgba(255, 255, 255, 0.7);
+        padding: 0.6em 1.1em;
+        border-radius: 1.6em;
+        box-shadow: 0 5px 20px rgba(36, 81, 183, 0.15);
+        margin: 0.8em 0 1.5em;
+        letter-spacing: -0.02em;
+        transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .disclaimer {
+        font-size: 1em;
+        color: #2451b7;
+        opacity: 0.75;
+        margin: 1.2em 0 0.7em;
+        text-align: center;
+        max-width: 90%;
+        line-height: 1.5;
+    }
+    .book-btn {
+        background: linear-gradient(90deg,#2451b7 0%,#7ea7ff 100%);
+        color: #fff;
+        font-size: 1.25em;
+        letter-spacing: 0.03em;
+        box-shadow: 0 10px 35px rgba(36, 81, 183, 0.45);
+        border-radius: 2.1em;
+        padding: 1.2em 3.2em;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+        border: none;
+        font-weight: 700;
+        margin-top: 1em;
+    }
+    .book-btn:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 15px 40px rgba(36, 81, 183, 0.55);
+    }
+    .bubbles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 3;
+        overflow: hidden;
+    }
+    .bubble {
+        position: absolute;
+        bottom: -50px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        opacity: 0;
+        filter: blur(2px);
+        animation: rise 1.8s ease-out forwards;
+    }
+    .sparkle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        opacity: 0;
+        animation: sparkle 1.8s ease-out forwards, fadeOut 1.8s ease-out forwards;
+    }
+    @keyframes rise {
+        0% {
+            opacity: 0;
+            transform: translateY(0) scale(0.1);
+        }
+        20% { opacity: 0.9; }
+        100% {
+            opacity: 0;
+            transform: translateY(-100vh) scale(0.9);
+        }
+    }
+    @keyframes sparkle {
+        0% { opacity: 0; }
+        10% { opacity: 1; }
+        20% { transform: translate(var(--tx1), var(--ty1)); }
+        30% { opacity: 0.7; transform: translate(var(--tx2), var(--ty2)); }
+        40% { opacity: 0.4; transform: translate(var(--tx3), var(--ty3)); }
+        100% { opacity: 0; }
+    }
+    @keyframes fadeOut {
+        0%, 70% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+    /* Responsive adjustments */
+    @media (max-width: 580px) {
+        #calc-card {
+            padding: 2em;
+            margin: 0 1rem;
+        }
+        .btn-row, .addon-row {
+            gap: 1rem;
+        }
+        .glass-btn {
+            min-width: 90px;
+            padding: 0.8em 1.5em;
+        }
+        h2 {
+            font-size: 2rem;
+        }
+        #price {
+            font-size: 2rem;
+            padding: 0.5em 0.8em;
+        }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="reset_cleaners_logo.png" alt="Reset Cleaners Logo"/>
+    <h1>Reset Cleaners LLC</h1>
+    <div class="tagline">Reset your space, reclaim your life</div>
+  </header>
+  <nav>
+    <a href="#quote">Quote</a>
+    <a href="#services">Services</a>
+    <a href="#faq">FAQ</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="container">
+    <!-- QUOTE CALCULATOR -->
+    <section id="quote">
+      <div id="calc-card">
+        <h2>Get Your Instant Quote</h2>
+        <!-- Bedrooms -->
+        <div class="section">
+            <label class="section-label">Bedrooms:</label>
+            <div class="btn-row">
+                <button class="glass-btn" onclick="setBeds(1)">1</button>
+                <button class="glass-btn" onclick="setBeds(2)">2</button>
+                <button class="glass-btn" onclick="setBeds(3)">3</button>
+                <button class="glass-btn" onclick="setBeds(4)">4</button>
+            </div>
+        </div>
+        <!-- Bathrooms -->
+        <div class="section">
+            <label class="section-label">Bathrooms:</label>
+            <div class="btn-row">
+                <button class="glass-btn" onclick="setBaths(1)">1</button>
+                <button class="glass-btn" onclick="setBaths(2)">2</button>
+                <button class="glass-btn" onclick="setBaths(3)">3</button>
+                <button class="glass-btn" onclick="setBaths(4)">4</button>
+            </div>
+        </div>
+        <!-- Add-ons -->
+        <div class="section">
+            <label class="section-label">Add-ons:</label>
+            <div class="addon-row">
+                <div class="addon-card">
+                    <input type="checkbox" id="oven" onchange="calcQuote()">
+                    <label for="oven">Oven</label>
+                </div>
+                <div class="addon-card">
+                    <input type="checkbox" id="fridge" onchange="calcQuote()">
+                    <label for="fridge">Fridge</label>
+                </div>
+                <div class="addon-card">
+                    <input type="checkbox" id="hottub" onchange="calcQuote()">
+                    <label for="hottub">Hot Tub</label>
+                </div>
+            </div>
+        </div>
+        <!-- Summary & Price -->
+        <div class="summary" id="summary"></div>
+        <div id="price">$100 - $120</div>
+        <div class="disclaimer">This is your estimated price. We'll confirm all details after you book.</div>
+        <button class="book-btn" onclick="showBubbles()">Book Now</button>
+      </div>
+    </section>
+
+    <!-- More site sections below: -->
+<section id="services">
+  <h2>Our Cleaning Services</h2>
+  <div style="display:flex;flex-wrap:wrap;gap:1.6em;justify-content:center;">
+    <!-- Standard Clean -->
+    <div class="service-card">
+      <h3>Standard/Basic Clean</h3>
+      <ul>
+        <li>All rooms: dust, vacuum, sweep, mop</li>
+        <li>Wipe surfaces, counters, sinks, faucets</li>
+        <li>Appliance exteriors cleaned</li>
+        <li>Bathroom: tub/shower, toilet, sink, mirrors</li>
+        <li>Trash removal, beds made</li>
+      </ul>
+      <div class="service-note">Perfect for regular maintenance.</div>
+    </div>
+    <!-- Deep Clean -->
+    <div class="service-card">
+      <h3>Deep Clean <span style="color:#2451b7;font-size:0.7em;">($180–$350)</span></h3>
+      <ul>
+        <li>All Standard Clean items</li>
+        <li>Baseboards, doorframes, window sills & blinds</li>
+        <li>Inside microwave, cabinet faces, backsplash</li>
+        <li>Descale heavy bathroom buildup</li>
+        <li>Behind/under furniture (if accessible)</li>
+        <li>Spot-clean walls, switches, vents, fans</li>
+      </ul>
+      <div class="service-note">Great for first cleans or season resets!</div>
+    </div>
+    <!-- Move In/Out Clean -->
+    <div class="service-card">
+      <h3>Move-In/Move-Out Clean</h3>
+      <ul>
+        <li>All Deep Clean features</li>
+        <li>Inside cabinets, drawers, oven, and fridge</li>
+        <li>Interior windows (reachable)</li>
+        <li>Cobweb removal, garages/patios swept (if requested)</li>
+        <li>Home "ready for move-in"</li>
+      </ul>
+    </div>
+    <!-- Airbnb Turnover -->
+    <div class="service-card">
+      <h3>Airbnb Turnover</h3>
+      <ul>
+        <li>Standard Clean + linens/towels changed</li>
+        <li>Beds remade, space staged for new guests</li>
+        <li>Restock basics (toilet paper, soap, etc.)</li>
+        <li>Trash/recycling removal</li>
+        <li>Report damages or left items to host</li>
+      </ul>
+      <div class="service-note">Fast, reliable, and thorough for short-term rentals!</div>
+    </div>
+    <!-- Hot Tub Add-on -->
+    <div class="service-card">
+      <h3>Hot Tub Chemical Balancing <span style="color:#2451b7;font-size:0.8em;">(Add-on)</span></h3>
+      <ul>
+        <li>Test & adjust pH, sanitizer, and alkalinity</li>
+        <li>Wipe down surfaces, remove debris</li>
+        <li>Log levels, alert host if issues found</li>
+      </ul>
+      <div class="service-note">Keep your hot tub sparkling, safe, and guest-ready.</div>
+    </div>
+    <!-- Oven/Fridge Add-ons -->
+    <div class="service-card">
+      <h3>Oven & Fridge Add-ons</h3>
+      <ul>
+        <li>Oven: racks removed, interior deep cleaned</li>
+        <li>Fridge: shelves, bins, door seals cleaned (if empty)</li>
+      </ul>
+      <div class="service-note">Available as part of any clean!</div>
+    </div>
+  </div>
+  <style>
+    .service-card {
+      background: #f7fbff;
+      border-radius: 1.3em;
+      box-shadow: 0 2px 16px #2451b718;
+      padding: 1.2em 1.5em 1em 1.5em;
+      min-width: 220px;
+      max-width: 340px;
+      flex: 1;
+      font-size: 1.05em;
+      margin-bottom: 0.5em;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .service-card h3 {
+      color: #2451b7;
+      font-size: 1.16em;
+      margin-bottom: 0.6em;
+    }
+    .service-card ul {
+      padding-left: 1.2em;
+      margin-bottom: 0.7em;
+    }
+    .service-card li {
+      margin-bottom: 0.5em;
+      color: #2850a9;
+      line-height: 1.45;
+    }
+    .service-note {
+      background: #e8f1fd;
+      color: #2451b7;
+      border-radius: 0.8em;
+      font-size: 0.97em;
+      padding: 0.5em 0.7em;
+      margin-top: auto;
+      margin-bottom: 0.5em;
+    }
+    @media (max-width: 700px) {
+      .service-card { min-width: 88vw; max-width: 98vw; }
+      #services h2 { font-size: 1.25em; }
+    }
+  </style>
+</section>
+<section id="why" style="margin-top:2em;">
+  <h2>Why We Clean</h2>
+  <div style="max-width:700px;margin:0 auto;text-align:center;">
+    <svg width="60" height="60" viewBox="0 0 48 48" style="margin-bottom: 0.7em;">
+      <circle cx="24" cy="24" r="22" fill="#e3f0fb" />
+      <path d="M24 10a14 14 0 1 0 14 14" fill="none" stroke="#2451b7" stroke-width="3" stroke-linecap="round"/>
+      <path d="M24 4v8M24 36v8M4 24h8M36 24h8" stroke="#2451b7" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <p style="font-size:1.2em;color:#274785;margin-bottom:1.4em;">
+      We believe every family deserves a sanctuary—a space where health, happiness, and peace of mind flourish.<br>
+      Our mission goes beyond cleaning; we're creating environments where life's most precious moments can unfold without worry.
+    </p>
+    <div style="margin: 1.1em 0;">
+      <button onclick="toggleWhy()" id="whyBtn" style="background:linear-gradient(90deg,#2451b7,#5476c2);color:#fff;padding:0.7em 1.7em;font-size:1.07em;border:none;border-radius:1.2em;box-shadow:0 2px 8px #2451b74c;font-weight:600;transition:background 0.25s;cursor:pointer;">
+        Discover Our Story
+        <span style="display:inline-block;transition:transform 0.3s;" id="whyArrow">&#8594;</span>
+      </button>
+    </div>
+    <div id="whyFull" style="display:none;max-width:640px;margin:0 auto;text-align:left;padding:1em 0 0 0;color:#234;padding-bottom:1em;">
+      <p>
+        At Reset Cleaners, we believe everyone deserves a fresh start—whether that’s coming home to a clean space, turning over a new leaf, or just reclaiming a little more time for what matters most.<br>
+        We exist to help people reset their surroundings, restore peace of mind, and support our community in building better days—one clean home at a time.
+      </p>
+      <p>
+        We do this by delivering meticulous, caring cleaning—by people who know what it means to overcome challenges and start again. We show up with integrity, respect, and an eye for the details that help our clients (and our team) thrive.
+      </p>
+      <p>
+        From routine house cleans to deep resets, move-ins, Airbnbs, and even hot tub care, we’re your trusted partners in making a fresh start possible—whenever you need it most.
+      </p>
+      <div style="text-align:center;margin-top:1.4em;">
+        <button onclick="toggleWhy()" style="background:#fff;color:#2451b7;border:2px solid #2451b7;padding:0.65em 1.5em;border-radius:1.1em;cursor:pointer;font-weight:600;">
+          Hide Our Story
+        </button>
+      </div>
+    </div>
+  </div>
+  <script>
+    function toggleWhy() {
+      var full = document.getElementById('whyFull');
+      var btn = document.getElementById('whyBtn');
+      var arr = document.getElementById('whyArrow');
+      if(full.style.display === 'none') {
+        full.style.display = 'block';
+        btn.style.background = "#234";
+        btn.style.color = "#fff";
+        arr.style.transform = "translateX(7px) rotate(25deg)";
+      } else {
+        full.style.display = 'none';
+        btn.style.background = "linear-gradient(90deg,#2451b7,#5476c2)";
+        btn.style.color = "#fff";
+        arr.style.transform = "none";
+      }
+    }
+  </script>
+</section>
+<section id="book">
+  <h2>Book Online</h2>
+  <p>Choose your date and time below. You'll receive confirmation instantly!</p>
+  <div style="max-width:540px;margin:0 auto;">
+    <iframe src="https://calendly.com/resetcleanersllc" width="100%" height="650" frameborder="0" scrolling="no" style="border-radius:1em;background:#f4f6fa;"></iframe>
+  </div>
+</section>
+<section id="contact">
+  <h2>Contact Us</h2>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:0.9em;">
+    <div>
+      <b>Email:</b>
+      <a href="mailto:resetcleanersllc@gmail.com" style="color:#2451b7;">resetcleanersllc@gmail.com</a>
+    </div>
+    <div>
+      <b>Phone (main):</b>
+      <a href="tel:5094159163" style="color:#2451b7;">509-415-9163</a>
+    </div>
+    <div>
+      <b>Phone (owner 2):</b>
+      <a href="tel:5096798626" style="color:#2451b7;">509-679-8626</a>
+    </div>
+    <div>
+      <b>Business Hours:</b> <span style="color:#2451b7;">Open 24/7</span>
+    </div>
+    <div style="margin-top:1.1em;">
+      <b>Follow us:</b>
+      <a href="https://instagram.com/reset_cleaners_llc" target="_blank" style="color:#2451b7;margin:0 0.5em;">Instagram</a>
+      <a href="https://facebook.com/resetcleanersllc" target="_blank" style="color:#2451b7;margin:0 0.5em;">Facebook</a>
+      <a href="https://tiktok.com/@resetcleanersllc" target="_blank" style="color:#2451b7;margin:0 0.5em;">TikTok</a>
+      <a href="https://www.yelp.com/biz/reset-cleaners-wenatchee" target="_blank" style="color:#2451b7;margin:0 0.5em;">Yelp</a>
+    </div>
+  </div>
+  <style>
+    #contact h2 { margin-bottom: 1.1em; }
+    #contact a:hover { text-decoration: underline; color:#174ea6;}
+  </style>
+  </section>
+  </div>
+  <script>
+    let beds = 1, baths = 1;
+    function setBeds(val) {
+        beds = val;
+        document.querySelectorAll('.btn-row')[0].querySelectorAll('.glass-btn').forEach((btn,i) => {
+            btn.classList.toggle('selected', i === val-1);
+        });
+        calcQuote();
+    }
+    function setBaths(val) {
+        baths = val;
+        document.querySelectorAll('.btn-row')[1].querySelectorAll('.glass-btn').forEach((btn,i) => {
+            btn.classList.toggle('selected', i === val-1);
+        });
+        calcQuote();
+    }
+    function calcQuote() {
+        let oven = document.getElementById('oven').checked ? 25 : 0;
+        let fridge = document.getElementById('fridge').checked ? 20 : 0;
+        let hottub = document.getElementById('hottub').checked ? 25 : 0;
+        let low = 100 + ((beds-1)*30) + ((baths-1)*20) + oven + fridge + hottub;
+        let high = 100 + ((beds-1)*50) + ((baths-1)*30) + oven + fridge + hottub
